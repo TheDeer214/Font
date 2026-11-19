@@ -1,3 +1,4 @@
 feature calt {
-    sub hyphen greater by hyphen_greater;
+    # Test substitution: typing '->' will temporarily turn into '='
+    sub hyphen greater by equal;
 } calt;
