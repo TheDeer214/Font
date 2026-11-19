@@ -1,12 +1,15 @@
 from fontTools.ttLib import TTFont
-from fontTools.feaLib.builder import addOpenTypeFeatures
+from fontTools.merge import Merger
 
-# Load font
-font = TTFont("SFMono-Regular.otf")
+print("Loading fonts...")
+# Load both fonts in the workspace
+sf_font = "SFMono-Regular.otf"
+fira_font = "FiraCode-Regular.ttf"
 
-# Apply your OpenType feature file
-addOpenTypeFeatures(font, "rules.fea")
+print("Merging Fira Code ligatures and rules into SF Mono...")
+merger = Merger()
+merged_font = merger.merge([sf_font, fira_font])
 
-# Save the output
-font.save("SFMono-Custom.otf")
-print("Custom font built successfully!")
+print("Saving final custom font...")
+merged_font.save("SFMono-Custom.otf")
+print("Build complete!")
