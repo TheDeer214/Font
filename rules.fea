@@ -1,27 +1,16 @@
 feature calt {
+    # --- Arrows ---
+    sub hyphen greater by hyphen_greater;        # ->
+    sub equal equal greater by fat_arrow;        # =>
+    sub less hyphen by less_hyphen;              # <-
 
-    # 1. Define sets of characters that trigger connectivity
-    #    (e.g., all symbols that can start an arrow)
-    @CONNECT_START = [hyphen equal exclam slash asterisk bar];
+    # --- Comparisons & Logic ---
+    sub exclam equal by notequal;                # !=
+    sub less equal by less_equal;                # <=
+    sub greater equal by greater_equal;          # >=
+    sub equal equal equal by triple_equal;       # ===
+    sub exclam equal equal by not_triple_equal;  # !==
 
-    # 2. Define the middle characters (the spine of a multi-char arrow)
-    @CONNECT_MIDDLE = [hyphen equal bar];
-
-    # 3. Define the ending character (the arrowhead)
-    @CONNECT_END = [greater];
-
-    # --- THE RULES ---
-
-    # Rule A: If you see a connectable start and middle sequence,
-    # convert the start character to a long, perfectly aligned variant.
-    sub @CONNECT_START' @CONNECT_MIDDLE by hyphen.LIGA_START;
-
-    # Rule B: If you see a middle character followed by another middle
-    # character, convert the current middle to a matching long variant.
-    sub @CONNECT_MIDDLE' @CONNECT_MIDDLE by hyphen.LIGA_MIDDLE;
-
-    # Rule C: When any connective character is followed immediately
-    # by a '>' (arrowhead), swap the arrowhead for a aligned variant.
-    sub [@CONNECT_START @CONNECT_MIDDLE]' @CONNECT_END by greater.LIGA_END;
-
+    # --- Comments & Special ---
+    sub slash slash by slash_slash;              # //
 } calt;
