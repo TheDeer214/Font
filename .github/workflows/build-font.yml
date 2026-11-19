@@ -1,30 +1,29 @@
-name: Build Custom Font
+name: Build Fira-Ligatured SF Mono
 
 on:
   push:
     branches: [ main, master ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: pip install fonttools
+      - name: Install dependencies
+        run: pip install fonttools
 
-    - name: Run build script
-      run: python build.py
+      - name: Run merge build script
+        run: python build.py
 
-    - name: Upload compiled font artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: SFMono-Custom
-        path: SFMono-Custom.otf
-        
+      - name: Upload compiled font artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SFMono-Custom
+          path: SFMono-Custom.otf
