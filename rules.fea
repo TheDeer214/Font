@@ -1,4 +1,3 @@
 feature calt {
-    # Test substitution: typing '->' will temporarily turn into '='
-    sub hyphen greater by equal;
+sub exclam equal by notequal;             
 } calt;
