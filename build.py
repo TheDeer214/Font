@@ -22,15 +22,16 @@ variant_overrides = {
     'bracketright': 'bracketright.cv27', # ]
     'braceleft': 'braceleft.cv29',       # {
     'braceright': 'braceright.cv29',     # }
-    'lessequal': 'lessequal.ss02',          # ss02: slanted <=, >=
-    'exclam_equal': 'exclam_equal.ss08',    # ss08: slanted ==, ===, !=
-    'period_hyphen': 'period_hyphen.cv25',  # cv25: lowered .- ligature
-    'colon_hyphen': 'colon_hyphen.cv26',    # cv26: lowered :- ligature
-    'period_equal': 'period_equal.cv32',    # cv32: lowered .= ligature
-    'bracket_square': 'bracket_square.cv27',# cv27: solid box brackets []
-    'brace_dots': 'brace_dots.cv28',        # cv28: dotted curly braces {..}
-    'backslash_double': 'backslash_double.ss06', # ss06: parallel backslashes \\
-    'equal_tilde': 'equal_tilde.ss07',      # ss07: approximate / not-approximate =~/!~
+    'less_equal': 'less_equal.ss02',
+    'exclam_equal': 'exclam_equal.ss08',
+    'slash_equal': 'slash_equal.cv24',
+    'period_hyphen': 'period_hyphen.cv25',
+    'colon_hyphen': 'colon_hyphen.cv26',
+    'period_equal': 'period_equal.cv32',
+    'bracket': 'bracket.cv27',
+    'brace': 'brace.cv28',
+    'backslash': 'backslash.ss06',
+    'equal_tilde': 'equal_tilde.ss07',
 }
 
 print("Baking all character variants into primary character map...")
