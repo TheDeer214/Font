@@ -6,36 +6,33 @@ sf_font = TTFont("SFMono-Regular.otf")
 fira_font = TTFont("FiraCode-Regular.ttf")
 
 def safe_copy_glyph(source_font, target_font, glyph_name):
-    """Safely copies a glyph from source to target by name if it exists."""
     if glyph_name in source_font.getGlyphOrder():
         if glyph_name not in target_font.getGlyphOrder():
             target_font.getGlyphOrder().append(glyph_name)
         
+        # Copy metrics
         try:
-            if glyph_name in source_font['hmtx'].metrics:
+            if 'hmtx' in source_font and glyph_name in source_font['hmtx'].metrics:
                 target_font['hmtx'].metrics[glyph_name] = source_font['hmtx'].metrics[glyph_name]
         except Exception as e:
             print(f"Metrics note for {glyph_name}: {e}")
             
+        # Copy TrueType glyf data if available
         try:
             if 'glyf' in source_font and 'glyf' in target_font:
                 if glyph_name in source_font['glyf']:
                     target_font['glyf'][glyph_name] = source_font['glyf'][glyph_name]
-            print(f"Successfully injected: {glyph_name}")
+                    print(f"Copied glyf outline: {glyph_name}")
         except Exception as e:
-            print(f"Error copying outline for {glyph_name}: {e}")
+            print(f"Outline note for {glyph_name}: {e}")
+            
     else:
-        print(f"Skipping: '{glyph_name}' not found in Fira Code.")
+        print(f"Skipping: '{glyph_name}' not found.")
 
 print("Copying Fira Code ligatures...")
-# Copy the exact ligature glyphs found in your log
-safe_copy_glyph(fira_font, sf_font, "exclam_equal.liga")      # !=
-safe_copy_glyph(fira_font, sf_font, "hyphen_hyphen.liga")    # --
-safe_copy_glyph(fira_font, sf_font, "hyphen_start.seq")      # Arrow parts
-safe_copy_glyph(fira_font, sf_font, "hyphen_middle.seq")
-safe_copy_glyph(fira_font, sf_font, "hyphen_end.seq")
+safe_copy_glyph(fira_font, sf_font, "exclam_equal.liga")
+safe_copy_glyph(fira_font, sf_font, "hyphen_hyphen.liga")
 
-# Write the rules linking the keys to these exact glyphs
 fea_code = """
 feature calt {
     sub exclam equal by exclam_equal.liga;
