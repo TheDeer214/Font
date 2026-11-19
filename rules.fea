@@ -1,3 +1,9 @@
 feature calt {
-sub exclam equal by notequal;             
+    # ‼️ 3-characters
+    sub hyphen hyphen greater by equal;        # Change '-->' to test symbol
+    sub equal equal equal by equal;            # Change '===' to test symbol
+
+    # ‼️ 2-characters
+    sub hyphen greater by equal;               # Change '->' to test symbol
+    sub exclam equal by notequal;             # Change '!=' to ≠
 } calt;
