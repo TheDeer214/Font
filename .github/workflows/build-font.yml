@@ -2,13 +2,13 @@ name: Build Custom Font
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repo
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Set up Python
@@ -22,8 +22,9 @@ jobs:
     - name: Run build script
       run: python build.py
 
-    - name: Upload artifact
+    - name: Upload compiled font artifact
       uses: actions/upload-artifact@v4
       with:
-        name: compiled-font
+        name: SFMono-Custom
         path: SFMono-Custom.otf
+        
