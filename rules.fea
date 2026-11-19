@@ -1,1 +1,3 @@
-
+feature calt {
+    sub hyphen greater by hyphen_greater;
+} calt;
